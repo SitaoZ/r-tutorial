@@ -19,8 +19,8 @@
 ```
 3. R中常用的帮助函数
 ```r
-help.start() # 打开帮助文档首页
-help("foo") # 查看函数foo的帮助信息
-?foo        # 同上
+> help.start() # 打开帮助文档首页
+> help("foo") # 查看函数foo的帮助信息
+> ?foo        # 同上
 ```
 
