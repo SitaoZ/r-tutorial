@@ -29,6 +29,16 @@
 > View() # 以电子表格的形式查看数据集
 
 ```
+5.包安装
+```r
+> install.packages("package_name")
+> install.packages("readr")
+> install.packages(c("readr", "ggplot2"))
+
+> if (!requireNamespace("devtools"))
+    install.packages("devtools")
+> devtools::install_github("TomKellyGenetics/leiden", ref = "master")
+```
 5.R-grammar
 ```r
 
