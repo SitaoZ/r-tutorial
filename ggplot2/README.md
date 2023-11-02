@@ -65,10 +65,16 @@ scale_alpha_ordinal()
 # 颜色盘控制
 scale_colour_brewer() # brewer颜色
 scale_fill_brewer()
+
 scale_colour_distiller() # distiller颜色
 scale_fill_distiller()
+
 scale_colour_fermenter() # fermenter颜色
 scale_fill_fermenter()
+
+# 离散型颜色
+scale_colour_hue()
+scale_fill_hue()
 
 # 连续性颜色
 scale_colour_continuous()
@@ -76,8 +82,28 @@ scale_fill_continuous()
 scale_colour_binned()
 scale_fill_binned()
 
-# 颜色控制
+
+# 手动创建离散型标度
 scale_color_manual(values = c('#619CFF','grey','#F8766D')) # 指定颜色
+scale_colour_manual() # 颜色
+scale_fill_manual()   # 填充
+scale_size_manual()   # 大小
+scale_shape_manual()  # 形状
+scale_linetype_manual() # 线型
+scale_linewidth_manual() # 线宽
+scale_alpha_manual()     # 透明度
+scale_discrete_manual()  # 通用
+
+# 连续型x&y处理
+scale_x_continuous()
+scale_y_continuous()
+scale_x_log10()
+scale_y_log10()
+scale_x_reverse()
+scale_y_reverse()
+scale_x_sqrt()
+scale_y_sqrt()
+
 ```
 
 
