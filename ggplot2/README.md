@@ -32,11 +32,51 @@ geom_rect()
 geom_ribbon()
 ```
 
-
-
-### 颜色设置
-
+### 辅助线
 ```r
+geom_abline #  diagonal 对角线
+geom_hline  #  horizontal 水平线
+geom_vline  #  vertical 垂直线
+```
+
+### 
+
+### scale 标度设置
+标度控制如何将数据值转换为视觉属性的细节。
+```r
+# 坐标控制
+labs()
+xlab()
+ylab()
+ggtitle()
+
+# 坐标轴控制
+lims()
+xlim()
+ylim()
+
+# 透明度控制
+scale_alpha()
+scale_alpha_continuous()
+scale_alpha_binned()
+scale_alpha_discrete()
+scale_alpha_ordinal()
+
+# 颜色盘控制
+scale_colour_brewer() # brewer颜色
+scale_fill_brewer()
+scale_colour_distiller() # distiller颜色
+scale_fill_distiller()
+scale_colour_fermenter() # fermenter颜色
+scale_fill_fermenter()
+
+# 连续性颜色
+scale_colour_continuous()
+scale_fill_continuous()
+scale_colour_binned()
+scale_fill_binned()
+
+# 颜色控制
 scale_color_manual(values = c('#619CFF','grey','#F8766D')) # 指定颜色
 ```
 
@@ -44,3 +84,5 @@ scale_color_manual(values = c('#619CFF','grey','#F8766D')) # 指定颜色
 
 ### reference
 [ggplot2 cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf)
+[ggplot tidyverse reference](https://ggplot2.tidyverse.org/reference/index.html)
+
