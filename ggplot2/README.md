@@ -41,7 +41,7 @@ geom_vline  #  vertical 垂直线
 
 ### 
 
-### scale 标度设置
+## scale 标度设置
 标度控制如何将数据值转换为视觉属性的细节。
 ```r
 # 坐标控制
@@ -108,7 +108,7 @@ scale_y_sqrt()
 
 
 
-### reference
+## reference
 [ggplot2 cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf)
 [ggplot tidyverse reference](https://ggplot2.tidyverse.org/reference/index.html)
 
