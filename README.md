@@ -1,5 +1,11 @@
 ## R-tutorial
 
+0. RStudio 快捷键
+```r
+# 多行注释
+Command + shift + c # Mac, Windows Ctrl
+```
+
 1. 检查安装包
 ```R
 > .libPaths()                    # 显示library库所在的位置
