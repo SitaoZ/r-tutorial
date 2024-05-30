@@ -47,6 +47,24 @@ iris %>% select(starts_with("Petal") & !ends_with("Width"))
 ```
 ### filter
 过滤
+```r
+filter(starwars, species == "Human") # 选择其中species == "Human"的数据
+filter(starwars, mass > 1000)        # 选择大于1000
+filter(starwars, hair_color == "none" & eye_color == "black") # 多个条件
+filter(starwars, hair_color == "none", eye_color == "black")
+
+filter(starwars, hair_color == "none" | eye_color == "black") # 任意一个条件
+starwars %>% filter(mass > mean(mass, na.rm = TRUE)) # 选择大于平均值
+starwars %>% group_by(gender) %>% filter(mass > mean(mass, na.rm = TRUE)) # 选择大于特定类别平均值的列
+
+# 使用变量名来直接选择
+vars <- c("mass", "height")
+cond <- c(80, 150)
+starwars %>% filter (.data[[vars[[1]]]] > cond[[1]],
+                    .data[[vars[[2]]]] > cond[[2]])
+
+```
+
 ### summarise
 减少变量
 ### arrange
