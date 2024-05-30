@@ -1,12 +1,12 @@
 ## dplyr tutorial
  dplyr
 tidyverse中用与数据框操作的工具[dplyr](!https://dplyr.tidyverse.org/articles/dplyr.html)。
-* [mutate](mutate)  
-* [transmute](transmute)
-* [select](select)
-* [filter](filter)
-* [summarise](summarise)
-* [arrange](arrange) 
+* [mutate](#mutate)  
+* [transmute](#transmute)
+* [select](#select)
+* [filter](#filter)
+* [summarise](#summarise)
+* [arrange](#arrange) 
 
 
 ### mutate
