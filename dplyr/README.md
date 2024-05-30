@@ -67,5 +67,19 @@ starwars %>% filter (.data[[vars[[1]]]] > cond[[1]],
 
 ### summarise
 减少变量
+
+```r
+mtcars %>%
+  summarise(mean = mean(disp), n = n())  # 返回平均值和样本数
+
+mtcars %>%
+  group_by(cyl) %>%
+  summarise(mean = mean(disp), n = n()) # 按组别分类，返回均值和样本数
+
+mtcars %>%
+  group_by(cyl) %>%
+  summarise(disp = mean(disp), sd = sd(disp)) # 按组别求sd mean
+
+```
 ### arrange
 改变排序
