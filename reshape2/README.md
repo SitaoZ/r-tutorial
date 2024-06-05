@@ -1,5 +1,5 @@
 ## Reshape2
-[reshape2](https://www.rdocumentation.org/packages/reshape2/versions/1.4.4)是用来实现数据的长宽格式之间相互转化的。
+[reshape2](https://seananderson.ca/2013/10/19/reshape/)是用来实现数据的长宽格式之间相互转化的。
 
 - 宽格式
 ```r
@@ -57,4 +57,15 @@ head(aql)
 ##    6     5   6            ozone            28
 ```
 
-dcast 
+## cast 长格式转化为宽格式
+reshape2中的cast有多种类型，其中dcast是使用的最多的类型，作用于dataframe
+
+```r
+aql <- melt(airquality, id.vars = c("month", "day")) # 宽格式变成长格式
+aqw <- dcast(aql, month + day ~ variable) # 复原数据
+                  -----------   ---------
+                       |             |
+ID variables(left side of formula)   Variable to swing into column names (right side of the formula)
+head(aqw)
+
+```
