@@ -82,4 +82,11 @@ mtcars %>%
 
 ```
 ### arrange
-改变排序
+改变排序,使用某一列的内容对文件进行排序，也可以指定分组
+```r
+arrange(mtcars, cyl, disp)  # 对mtcars数据框，按照cyl和disp内容进行排序
+arrange(mtcars, desc(disp)) # 按照disp倒序排列 Descending order
+
+by_cyl <- mtcars %>% group_by(cyl) # 获取某一列的数据
+by_cyl %>% arrange(desc(wt))       # 对某一列的数据进行排序
+```
