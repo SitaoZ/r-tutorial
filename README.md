@@ -42,6 +42,8 @@ Command + shift + c # Mac, Windows Ctrl
 > detach("package:dplyr") # 删除当前导入的dplyr包
 > data(package="dplyr")   # 列出dplyr中的数据集
 > ls("package:dplyr")     # 列出R包中的全部函数
+> ls("package:stats")     # 列出R中的stats包的全部函数
+> length(ls("package:stats")) # 查看stats中有多少函数
 
 ```
 3. R中常用的帮助函数
