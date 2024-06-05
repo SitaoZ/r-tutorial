@@ -14,7 +14,7 @@ head(airquality)
 ## 6    28      NA 14.9   66     5   6
 ```
 
-- 长格式
+- 长格式  
 melt默认情况下，该函数会将所有的数字类型的列视作被转化的列。
 ```r
 aql <- melt(airquality) # [a]ir [q]uality [l]ong format
