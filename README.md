@@ -1,12 +1,12 @@
 ## R-tutorial
 
-0. RStudio 快捷键
+1. RStudio 快捷键
 ```r
 # 多行注释
 Command + shift + c # Mac, Windows Ctrl
 ```
 
-1. 检查安装包
+2. 检查安装包
 ```R
 > .libPaths()                    # 显示library库所在的位置
 > .packages(all.available=TRUE)  # 显示已经安装的包
@@ -30,7 +30,7 @@ Command + shift + c # Mac, Windows Ctrl
 > for (i in Rpackages) install.packages() # 安装包
 ```
 
-2. 管理R工作空间的函数
+3. 管理R工作空间的函数
 ```r
 > getwd('path')  # 显示当前工作目录
 > setwd('path')  # 修改当前的工作目录为path
@@ -46,19 +46,19 @@ Command + shift + c # Mac, Windows Ctrl
 > length(ls("package:stats")) # 查看stats中有多少函数
 
 ```
-3. R中常用的帮助函数
+4. R中常用的帮助函数
 ```r
 > help.start()  # 打开帮助文档首页
 > help("foo")   # 查看函数foo的帮助信息
 > ?foo          # 同上
 ```
 
-4.常用函数
+5. 常用函数
 ```r
 > View() # 以电子表格的形式查看数据集
 
 ```
-5.包安装
+6. 包安装
 ```r
 > install.packages("package_name")
 > install.packages("readr")
@@ -70,9 +70,15 @@ Command + shift + c # Mac, Windows Ctrl
 ```
 
 
-5.R-grammar
+7. R-grammar
 ```r
 > # R 中的管道符 %>%可以有dplyr包导入，也可以使用magrittr包导入
 > library(dplyr)
 > starwars %>% head()
+```
+8. 查看颜色
+```r
+> library("scales")
+> show_col(pal_npg("nrc")(10))
+> show_col(pal_npg("nrc", alpha = 0.6)(10))
 ```
