@@ -14,6 +14,8 @@ Command + shift + c # Mac, Windows Ctrl
 > search()                       # 显示当前环境已经导入的包
 > R.version.string               # 显示当前的R版本
 > R.Version()                    # R.Version
+
+> install.packages(package, repos="https://mirrors.tuna.tsinghua.edu.cn/CRAN") # 指定源安装包
 ```
 
 - R环境的批量移动
