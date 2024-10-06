@@ -3,6 +3,7 @@
 tidyverse中用与数据框操作的工具[dplyr](!https://dplyr.tidyverse.org/articles/dplyr.html)。
 tidy data数据格式为 每列为变量，每行为一个样本。
 
+* [row names](#rowname)
 * [group](#group)
 * [mutate](#mutate)  
 * [transmute](#transmute)
@@ -11,6 +12,17 @@ tidy data数据格式为 每列为变量，每行为一个样本。
 * [summarise](#summarise)
 * [arrange](#arrange) 
 
+### row name
+处理数据框时需要将row name变成其中的一列(rownames_to_column)，或者将列转变成rowname (column_to_rownames)
+
+
+```r
+mtcars %>% tibble::rownames_to_column(var = "C")
+```
+
+```r
+mtcars %>% tibble::rownames_to_column(var = "C") %>% tibble::column_to_rownames(var = "C")
+```
 
 ### group 
 ```r
