@@ -74,7 +74,7 @@ Command + shift + c # Mac, Windows Ctrl
 
 7. R-grammar
 ```r
-> # R 中的管道符 %>%可以有dplyr包导入，也可以使用magrittr包导入
+> # R 中的管道符 %>%可以由dplyr包导入，也可以使用magrittr包导入
 > library(dplyr)
 > starwars %>% head()
 ```
