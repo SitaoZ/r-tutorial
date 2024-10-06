@@ -1,6 +1,9 @@
 ## dplyr tutorial
  dplyr
 tidyverse中用与数据框操作的工具[dplyr](!https://dplyr.tidyverse.org/articles/dplyr.html)。
+tidy data数据格式为 每列为变量，每行为一个样本。
+
+* [group](#group)
 * [mutate](#mutate)  
 * [transmute](#transmute)
 * [select](#select)
@@ -9,6 +12,16 @@ tidyverse中用与数据框操作的工具[dplyr](!https://dplyr.tidyverse.org/a
 * [arrange](#arrange) 
 
 
+### group 
+```r
+mtcars %>% group_by(cyl) %>% summarise(mean = mean(mpg), n = n())
+# A tibble: 3 × 3
+    cyl  mean     n
+  <dbl> <dbl> <int>
+1     4  26.7    11
+2     6  19.7     7
+3     8  15.1    14
+```
 ### mutate
 生成新的变量，使用原有的变量进行计算或生成新的变量，在原数据框的基础上返回新的数据框。
 可以进行数学运算。
@@ -47,6 +60,24 @@ iris %>% select(starts_with("Petal") & !ends_with("Width"))
 ```
 ### filter
 过滤
+
+```r
+# 逻辑操作符号
+==  等于
+!=  不等于
+>   大于
+<   小于
+<=  小于等于
+>=  大于等于
+is.na()  缺失值
+!is.na() 非缺失值
+%in%     在
+!        非
+|        或
+&        与
+xor()    只满足一个条件（|减去&）
+```
+
 ```r
 filter(starwars, species == "Human") # 选择其中species == "Human"的数据
 filter(starwars, mass > 1000)        # 选择大于1000
