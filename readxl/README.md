@@ -25,3 +25,10 @@ read_excel(xlsx_example, na = "setosa")      # 若果NA表示某种信息而不�
 
 ```
 
+
+## openxlsx
+
+```r
+library(openxlsx)
+openxlsx::write.xlsx(dataframe, file = "example.xlsx") # 写入Excel
+```
