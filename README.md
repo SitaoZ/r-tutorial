@@ -84,3 +84,9 @@ Command + shift + c # Mac, Windows Ctrl
 > show_col(pal_npg("nrc")(10))
 > show_col(pal_npg("nrc", alpha = 0.6)(10))
 ```
+
+9. 设置BioManager镜像
+```r
+options("repos" = c(CRAN="http://mirrors:.tuna.tsinghua.edu.cn/CRAN"))
+options(BioC_mirror = "http://mirrors.tuna.tsinghua.edu.cn.bioconductor")
+```
