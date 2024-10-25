@@ -22,7 +22,7 @@ genes <- c("ENSMUSG00000031073","ENSMUSG00000049124","ENSMUSG00000091721","ENSMU
 #genes <- c("Fgf15","Gm8186","Gimd1","Slc30a10","Iglv1","Igkv4-59","Iglc1","Dmbt1","AC149090.1","Fkbp5","Igkv5-48","Ighv1-19","Ighv1-26","Igkv6-15","Gm6851","Duox2","Card9","Fam162a","Gpx2","Oasl2","Cd38","Tifa","Reg3g","Reg3b","Igkv6-23","Stom","Isg15","Scd2")
 genes <- gene672$gene_id
 
-
+keytypes(org.Mm.eg.db) # 查看数据的中的keytypes
 genes_entrezid <- mapIds(org.Mm.eg.db, keys = genes, keytype="ENSEMBL", column = "ENTREZID")
 names(genes_entrezid)
 #genes_entrezid = as.data.frame(as.matrix(genes_entrezid))
