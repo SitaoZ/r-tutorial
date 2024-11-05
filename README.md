@@ -73,11 +73,20 @@ Command + shift + c # Mac, Windows Ctrl
 
 
 7. R-grammar
+- 管道符
 ```r
 > # R 中的管道符 %>%可以由dplyr包导入，也可以使用magrittr包导入
 > library(dplyr)
 > starwars %>% head()
 ```
+- 条件判断
+```r
+> # 两个ifelse 叠加
+> df$UP_DOWN <- ifelse(df$P_value <= 0.05, 
+                     ifelse(df$`log2 FC` >= 2,ifelse(df$Gene == 'Malrd1','Bait','Interactor'), 'Unspecific'),
+                     "Unspecific")
+```
+
 8. 查看颜色
 ```r
 > library("scales")
