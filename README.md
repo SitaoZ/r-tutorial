@@ -96,6 +96,8 @@ Command + shift + c # Mac, Windows Ctrl
 
 9. 设置BioManager镜像
 ```r
+getOption("repos") # 查看当前的镜像
+install.packages("ABC", repos="http://mirror.tuna.tsinghua.edu.cn")
 options("repos" = c(CRAN="http://mirrors:.tuna.tsinghua.edu.cn/CRAN"))
 options(BioC_mirror = "http://mirrors.tuna.tsinghua.edu.cn.bioconductor")
 ```
