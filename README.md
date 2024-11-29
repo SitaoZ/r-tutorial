@@ -88,21 +88,21 @@ Command + shift + c # Mac, Windows Ctrl
 ```
 - header 重复解决
 ```bash
-# Method 1
-# 或者去读直接，df <- read.csv('a.csv', check.names = TRUE)
+> # Method 1
+> # 或者去读直接，df <- read.csv('a.csv', check.names = TRUE)
 
 
-# Method 2
-df <- read.csv('a.csv', check.names = FALSE)
-df
-# ID A A A B B B
-# 1 gene1 1 2 3 4 5 6
-# 2 gene2 2 3 4 5 6 7
-names(df) <- make.unique(names(df))
-df
-# ID A A.1 A.2 B B.1 B.2
-# 1 gene1 1   2   3 4   5   6
-# 2 gene2 2   3   4 5   6   7
+> # Method 2
+> df <- read.csv('a.csv', check.names = FALSE)
+> df
+> # ID A A A B B B
+> # 1 gene1 1 2 3 4 5 6
+> # 2 gene2 2 3 4 5 6 7
+> names(df) <- make.unique(names(df))
+> df
+> # ID A A.1 A.2 B B.1 B.2
+> # 1 gene1 1   2   3 4   5   6
+> # 2 gene2 2   3   4 5   6   7
 ```
 
 8. 查看颜色
