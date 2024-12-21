@@ -36,10 +36,16 @@ UpSet图以矩阵形式绘制集合的交集，如下图所示。
 
 - 注意，UpSet通常易于可视化。但有一个重要警告：在解释集合大小差异很大的数据时，应小心谨慎。
 
+## UpSetR 安装
+```r
+install.packages("UpSetR")
+```
 ## UpSetR代码
 [UpSetR](!https://github.com/hms-dbmi/UpSetR)
 ```r
+# 读取软件提供的自带数据集
 mutations <- read.csv( system.file("extdata", "mutations.csv", package = "UpSetR"), header=T, sep = ",")
-
-
+# 画图
+upset(mutations, sets = c("PTEN", "TP53", "EGFR", "PIK3R1", "RB1"), sets.bar.color = "#56B4E9",
+order.by = "freq", empty.intersections = "on")
 ```
