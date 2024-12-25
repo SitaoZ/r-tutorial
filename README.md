@@ -235,23 +235,31 @@ names(My_exp)<-c("cell_lines","sample_id","counts")
 > head(df[["sample"]])
 ```
 
-- 数据库子集 subsetting
+- 数据库子集 subsetting 
 ```r
 > iris[2,4] # 返回第四列第二行的值
 
 > iris[2, ] # 返回第两行的值
 
-> iris[-1, ] # 返回除了第一行之外的数据框; - 表示去除
+> iris[-1, ]  # 返回除了第一行之外的数据框; - 表示去除
 
 > iris[1:4,1] # 返回第一列的1至4行，作为一个向量返回
 > iris[1:4, ] # 返回数据框的1至4行，作为一个数据框返回
 
 > iris[1:10,c("Sepal.Length","Sepal.Width")] # 直接用列名
-> iris[scaled_counts$sample == "508",] # 使用比较运算符
+> iris[iris$Species == "setosa",]            # 使用比较运算符
 
 ```
 
-- 数据操作
+- %in%
+%in% “返回一个逻辑向量，指示其左操作数是否匹配”。然后可以使用此逻辑向量将数据帧过滤为仅匹配的值。
+```r
+> keep_t<-c("CPD","EXT1","MCL1","LASP1")
+> head(sscaled$transcript %in% keep_t)
+
+```
+
+- 使用tidyverse整理数据
 tidy 数据有三条规则：（1）每个变量形成自己的列，（2）各个观测值形成一行，（3）每个值都有自己的单元格。
 处理数据使用tidyverse集合包，它包括dplyr, ggplot2, forcats, tibble, readr, stringr, tidyr, and purr
 ```r
@@ -262,4 +270,18 @@ library(tidyverse)
 # ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
 # ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
 # ✔ purrr     1.0.2
+```
+
+- dplyr
+dplyr 包是一个相当新的（2014 年）包，它试图为最常见的数据操作任务提供简单的工具。它被构建为直接处理数据框。它背后的想法很大程度上受到 plyr 包的启发，该包已经使用了一段时间，但在某些情况下速度很慢。dplyr 通过将大部分计算移植到 C++ 来解决这个问题。另一个功能是能够处理直接存储在外部数据库中的数据。这样做的好处是，数据可以在关系数据库中本地管理，可以对该数据库进行查询，并且只返回查询的结果。这解决了 R 的一个常见问题，即所有操作都在内存中进行，因此您可以处理的数据量受到可用内存的限制。数据库连接基本上消除了这一限制，因为您可以拥有一个超过 100 GB 的数据库，直接对其进行查询并提取 R 中分析所需的数据。--- datacarpentry.com
+
+```r
+> install.packages("dplyr") 
+> library("dplyr")
+
+# 取数据框子集
+# 选取 gene/transcript, logFC, and FDR corrected p-value
+# 第一个参数是数据框，后面参数为选择的列
+> dexp_s <- select(dexp, transcript, logFC, FDR) 
+
 ```
