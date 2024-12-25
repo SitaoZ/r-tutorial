@@ -148,7 +148,7 @@ options(BioC_mirror = "http://mirrors.tuna.tsinghua.edu.cn.bioconductor")
 > transcript_names[length(transcript_names)] # 最后一个元素
 # GCLC
 ```
-
+- 向量 vector
 ```r
 # 合并函数 combine function c()
 > transcript_names <- c(transcript_names,"ANAPC10P1","ABCD1")
@@ -173,4 +173,93 @@ options(BioC_mirror = "http://mirrors.tuna.tsinghua.edu.cn.bioconductor")
 
 # 保存
 > saveRDS(transcript_counts,"transcript_counts.rds")
+```
+
+- 因子 factor   
+它们是用于存储分类数据的专用向量（有序或无序）
+```r
+> sex <- factor(c("M","F","F","M","M","M"))
+> levels(sex)
+# [1] "F" "M"
+```
+
+- 列表 list
+列表可以包含不同类型的多个元素
+```r
+# 创建列表list()
+> My_exp <- list(c("N052611", "N061011", "N080611", "N61311" ), 
+               c("SRR1039508", "SRR1039509", "SRR1039512",
+                 "SRR1039513", "SRR1039516", "SRR1039517",
+                 "SRR1039520", "SRR1039521"),c(100,200,300,400))
+# 命名列表 names函数
+names(My_exp)<-c("cell_lines","sample_id","counts")
+
+# 列表循环 lapply()
+# 创建一个函数（从每个向量中删除第一个索引）
+> lapply(My_exp,function(x){x[-1]})  # 变量前面放置“-”以将其排除
+```
+
+- 数据框 dataframe
+```r
+# R 基础函数
+> read.csv()
+> read.table()
+> read.delim() 
+> readRDS() # 读取已存在的R对象
+
+# 行数
+> nrow()
+# 行名
+> rownames()
+
+# 列数
+> ncol()
+# 列名
+> colnames()
+
+# 前几行
+> head()
+# 后几行
+> tail()
+```
+- 数据框索引
+```r
+# 可以使用 [] [[]] $ 三个符号
+
+# 使用 $
+> head(df$sample)
+# 使用 []
+> head(df["sample"])
+
+# 使用 [[]]
+> head(df[["sample"]])
+```
+
+- 数据库子集 subsetting
+```r
+> iris[2,4] # 返回第四列第二行的值
+
+> iris[2, ] # 返回第两行的值
+
+> iris[-1, ] # 返回除了第一行之外的数据框; - 表示去除
+
+> iris[1:4,1] # 返回第一列的1至4行，作为一个向量返回
+> iris[1:4, ] # 返回数据框的1至4行，作为一个数据框返回
+
+> iris[1:10,c("Sepal.Length","Sepal.Width")] # 直接用列名
+> iris[scaled_counts$sample == "508",] # 使用比较运算符
+
+```
+
+- 数据操作
+tidy 数据有三条规则：（1）每个变量形成自己的列，（2）各个观测值形成一行，（3）每个值都有自己的单元格。
+处理数据使用tidyverse集合包，它包括dplyr, ggplot2, forcats, tibble, readr, stringr, tidyr, and purr
+```r
+library(tidyverse)
+# ── Attaching core tidyverse packages ────── tidyverse 2.0.0 ──
+# ✔ dplyr     1.1.4     ✔ readr     2.1.5
+# ✔ forcats   1.0.0     ✔ stringr   1.5.1
+# ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+# ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+# ✔ purrr     1.0.2
 ```
