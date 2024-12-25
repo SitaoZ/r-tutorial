@@ -14,7 +14,7 @@ Command + shift + c # Mac, Windows Ctrl
 > search()                       # 显示当前环境已经导入的包
 > R.version.string               # 显示当前的R版本
 > R.Version()                    # R.Version
-
+> sessionInfo()                  # 返回R会话的信息
 > install.packages(package, repos="https://mirrors.tuna.tsinghua.edu.cn/CRAN") # 指定源安装包
 ```
 
@@ -118,4 +118,14 @@ getOption("repos") # 查看当前的镜像
 install.packages("ABC", repos="http://mirror.tuna.tsinghua.edu.cn")
 options("repos" = c(CRAN="http://mirrors:.tuna.tsinghua.edu.cn/CRAN"))
 options(BioC_mirror = "http://mirrors.tuna.tsinghua.edu.cn.bioconductor")
+```
+
+10. R基本语法
+- R 对象
+在 R 中被赋值的所有内容都是对象。我们通常将 R 对象视为方法（或函数）可以对其执行操作的东西；但是，R 函数也是 R 对象。R 对象是分配给 R 内存的内容，属于特定类型或类。对象包括向量、列表、矩阵、数组、因子和数据框等。不要被术语所困扰。为了分配给内存，必须创建一个 r 对象。
+```r
+# Ris case sensitive， 不要使用R已存在的函数名作为对象名称
+# <- 和 = 均可以
+> ABC <- 'ATCG'
+> abc = 'ATCG'
 ```
