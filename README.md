@@ -284,4 +284,10 @@ dplyr 包是一个相当新的（2014 年）包，它试图为最常见的数据
 # 第一个参数是数据框，后面参数为选择的列
 > dexp_s <- select(dexp, transcript, logFC, FDR) 
 
+# 我们还可以选择所有列，使用 - 或 ! 删除那些我们不感兴趣的列
+> df_exp<-select(dexp, -feature)
+
+# : 区间
+> df_exp<-select(df_exp, transcript:FDR,albut)   
+
 ```
