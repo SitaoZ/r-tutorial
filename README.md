@@ -122,10 +122,55 @@ options(BioC_mirror = "http://mirrors.tuna.tsinghua.edu.cn.bioconductor")
 
 10. R基本语法
 - R 对象
-在 R 中被赋值的所有内容都是对象。我们通常将 R 对象视为方法（或函数）可以对其执行操作的东西；但是，R 函数也是 R 对象。R 对象是分配给 R 内存的内容，属于特定类型或类。对象包括向量、列表、矩阵、数组、因子和数据框等。不要被术语所困扰。为了分配给内存，必须创建一个 r 对象。
+在 R 中被赋值的所有内容都是对象。我们通常将 R 对象视为方法（或函数）可以对其执行操作的东西；但是，R 函数也是 R 对象。R 对象是分配给 R 内存的内容，属于特定类型或类。
+对象包括向量、列表、矩阵、数组、因子和数据框等。不要被术语所困扰。为了分配给内存，必须创建一个 r 对象。
 ```r
+# 创建对象 <- 和 = 均可以
 # Ris case sensitive， 不要使用R已存在的函数名作为对象名称
-# <- 和 = 均可以
 > ABC <- 'ATCG'
 > abc = 'ATCG'
+
+# 删除对象
+> rm(abc)
+
+# 对象的类型查询
+> mode(abc)
+> typeof(abc)
+> class(abc)
+```
+- 1-based
+```r
+# 向量 vector
+> transcript_names <- c("TSPAN6","TNMD","SCYL3","GCLC")
+> length(transcript_names)
+> transcript_names[1] # 第一个元素 1-based
+# TSPAN6
+> transcript_names[length(transcript_names)] # 最后一个元素
+# GCLC
+```
+
+```r
+# 合并函数 combine function c()
+> transcript_names <- c(transcript_names,"ANAPC10P1","ABCD1")
+# "TSPAN6"    "TNMD"      "SCYL3"     "GCLC"      "ANAPC10P1" "ABCD1"
+
+# 重命名 rename
+> transcript_names[3]<-"NNAME"
+> transcript_names[transcript_names == "ABCD1"]  <- "NEW"
+
+# 过滤
+> transcript_counts[transcript_counts > 260]
+
+# 过滤掉 NAs
+> transcript_counts[!is.na(transcript_counts)]   # 返回非NAs的值 
+> which(is.na(transcript_counts))                # 返回NAs的索引 
+
+#  操作 %in%
+> transcript_names <- c("TSPAN6", "TNMD", "NNAME", "ANAPC10P1", "NEW")
+> find_transcripts<-c("NNAME","ANAPC10P1")
+> transcript_names[transcript_names %in% find_transcripts]
+# "NNAME"     "ANAPC10P1"
+
+# 保存
+> saveRDS(transcript_counts,"transcript_counts.rds")
 ```
