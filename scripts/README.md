@@ -47,3 +47,14 @@ ggplot(data = P4, aes(x = Concentration, y = Count, color = Source)) +
   facet_wrap(~Gene, ncol = 3) +
   scale_color_manual(values = c("#4DBBD5FF", "#E64B35FF"))
 ```
+
+### 柱状图按值倒序排列
+```bash
+library(ggplot2)
+
+gtex <- read.csv('gtex.txt', sep = '\t')
+head(gtex)
+
+ggplot(data = gtex, aes(x = reorder(Tissue, -nTPM), y = nTPM, fill = Tissue)) + 
+  geom_bar(stat = 'identity')  + theme_classic() 
+```
