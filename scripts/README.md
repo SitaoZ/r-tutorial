@@ -54,7 +54,7 @@ library(ggplot2)
 
 gtex <- read.csv('gtex.txt', sep = '\t')
 head(gtex)
-
+# reorder 绘制条形图（按 nTPM 降序）
 ggplot(data = gtex, aes(x = reorder(Tissue, -nTPM), y = nTPM, fill = Tissue)) + 
   geom_bar(stat = 'identity')  + theme_classic() 
 ```
