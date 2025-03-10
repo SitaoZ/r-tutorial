@@ -49,7 +49,7 @@ ggplot(data = P4, aes(x = Concentration, y = Count, color = Source)) +
 ```
 
 ### 柱状图按值倒序排列
-```bash
+```r
 library(ggplot2)
 
 gtex <- read.csv('gtex.txt', sep = '\t')
@@ -57,4 +57,71 @@ head(gtex)
 # reorder 绘制条形图（按 nTPM 降序）
 ggplot(data = gtex, aes(x = reorder(Tissue, -nTPM), y = nTPM, fill = Tissue)) + 
   geom_bar(stat = 'identity')  + theme_classic() 
+```
+
+### Heatmap 按指定的排序
+
+```r
+# 导入包
+library(pheatmap)
+library(dplyr)
+
+setwd('C:/Users/zhusitao/Documents/R_workshop/project/QXX/species_table/')
+
+df <- read.csv('taxa_table_RC.tsv', sep = '\t')
+head(df)
+
+# 列名重命名 
+df <- df %>% rename("A_L1" = L1_A, "B_L1" = L1_B, "A_L4" = L4_A, "B_L4"=L4_B, "A_L7" = L7_A, "B_L7" = L7_B, 
+                    "B_H1" = H1_B, "A_H2" = H2_A, "B_H2" = H2_B, "A_H3" = H3_A, "B_H3" = "H3_B", "B_H4" = H4_B,
+                    "B_H5" = H5_B, "A_H7" = H7_A, "B_H7" = H7_B, "A_aL1" = aL1_A, "B_aL1" = aL1_B, "B_aL3" = aL3_B,
+                    "A_aL4" = aL4_A, "B_aL4" = aL4_B, "A_aL6" = aL6_A, "B_aL6" = aL6_B, "B_aL7" = aL7_B, "B_aH1" = aH1_B, "A_aH2" =aH2_A,
+                    "B_aH2" = aH2_B, "A_aH3" = aH3_A, "B_aH3" = aH3_B, "B_aH4" = aH4_B, "B_aH6" = aH6_B, "B_aH7" = aH7_B)
+head(df)
+dim(df)
+
+# 去除不用的列
+df$taxonID <- NULL
+
+# 拆分旧列成新列
+library(tidyr)
+df <- df %>%
+  separate(
+    taxonomy,           # 要拆分的列
+    into = c("Domain", "Phylum", "Class", "Order", "Family", "Genus", "Species"),  # 新列名
+    sep = ";",          # 拆分依据的分隔符（可以是正则表达式）
+    remove = TRUE       # 是否删除原始列（默认TRUE）
+  )
+# c("Domain", "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species")
+
+                        
+head(df)
+df$taxonomy<- NULL
+df <- filter(df, df$Species != "s_Unclassified")
+dim(df)
+head(df)
+
+rownames(df) <- df$Species
+df$Domain <- NULL
+df$Phylum <- NULL
+df$Class <- NULL
+df$Order <- NULL
+df$Family <- NULL
+df$Genus <- NULL
+df$Species <- NULL
+head(df)
+dim(df)
+
+# 过滤行
+df <- df[rowSums(abs(df)) > 10000, ]
+dim(df)
+head(df)
+
+# 按行名排序
+df_sorted <- df[order(rownames(df)), ]
+# 按列名排序
+df_sorted <- df_sorted[, order(colnames(df_sorted))]
+dim(df_sorted)
+pheatmap(df_sorted, scale = 'row', cluster_rows = F, cluster_cols = F)
+
 ```
