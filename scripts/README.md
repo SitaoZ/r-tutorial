@@ -125,3 +125,22 @@ dim(df_sorted)
 pheatmap(df_sorted, scale = 'row', cluster_rows = F, cluster_cols = F)
 
 ```
+
+### PubMed 统计关键词文献
+
+```bash
+library(ggplot2)
+paper <- read.csv('/Users/zhusitao/Downloads/PubMed_Timeline_Results_by_Year.csv', skip = 1)
+head(paper)
+
+ggplot(data = paper, aes(x = Year, y = Count)) + geom_bar(stat = 'identity',fill='#17A589') + 
+  scale_x_continuous(
+    breaks = seq(2000, 2025, by = 5),
+    labels = seq(2000, 2025, by = 5)) +
+  geom_text(
+    aes(label = Count),
+    vjust = -0.5,
+    color = "black",
+    size = 3) +
+  labs(y = "Paper Count")
+```
