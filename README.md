@@ -48,6 +48,17 @@ Command + shift + c # Mac, Windows Ctrl
 > length(ls("package:stats")) # 查看stats中有多少函数
 
 ```
+
+- 查看文件
+```r
+> list.dirs()  # 列出当前目录
+> list.files() # 列出当前文件
+> dataFiles <- file.path(directory,"pasilla_gene_counts.tsv") # 合并文件路径
+> file.copy(dataFiles, dataPath, overwrite = TRUE)            # 拷贝文件
+```
+
+
+
 4. R中常用的帮助函数
 ```r
 > help.start()  # 打开帮助文档首页
