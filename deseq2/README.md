@@ -66,3 +66,67 @@ resSig[which(resSig$log2FoldChange < 0),'up_down'] <- 'down' # 表达量显著�
 head(resSig)
 write.table(resSig, "ewat-control-treat15-0.05.xls", sep='\t',col.names=T,row.names=F,quote = FALSE,na='')     # 输出差异表达分析结果
 ```
+
+- Count matrix input
+```bash
+library(DESeq2)
+# BiocManager::install("pasilla")
+library(pasilla)
+
+directory <- system.file("extdata", package="pasilla",
+                         mustWork=TRUE)
+
+list.files(directory)
+dataFiles <- file.path(directory,"pasilla_gene_counts.tsv")
+
+dataPath <- system.file("extdata", package="DESeq2",
+                        mustWork=TRUE)
+file.copy(dataFiles, dataPath, overwrite = TRUE)
+
+pasCts <- system.file("extdata",
+                      "pasilla_gene_counts.tsv",
+                      package="DESeq2", mustWork=TRUE)
+
+pasAnno <- system.file("extdata",
+                       "pasilla_sample_annotation.csv",
+                       package="pasilla", mustWork=TRUE)
+cts <- as.matrix(read.csv(pasCts,sep="\t",row.names="gene_id"))
+coldata <- read.csv(pasAnno, row.names=1)
+coldata <- coldata[,c("condition","type")]
+coldata$condition <- factor(coldata$condition)
+coldata$type <- factor(coldata$type)
+
+head(cts,2)
+col.order <- c("treated1","treated2","treated3","untreated1","untreated2", "untreated3", "untreated4")
+
+cts <- cts[, col.order]
+
+head(cts)
+coldata
+
+rownames(coldata) <- sub("fb", "", rownames(coldata))
+all(rownames(coldata) %in% colnames(cts))
+
+all(rownames(coldata) == colnames(cts))
+library("DESeq2")
+dds <- DESeqDataSetFromMatrix(countData = cts,
+                              colData = coldata,
+                              design = ~ condition)
+dds
+
+featureData <- data.frame(gene=rownames(cts))
+mcols(dds) <- DataFrame(mcols(dds), featureData)
+mcols(dds)
+
+dds <- DESeq(dds)
+res <- results(dds)
+res
+
+res <- results(dds, name="condition_treated_vs_untreated")
+res <- results(dds, contrast=c("condition","treated","untreated"))
+
+resultsNames(dds)
+
+resLFC <- lfcShrink(dds, coef="condition_treated_vs_untreated", type="apeglm")
+resLFC
+```
