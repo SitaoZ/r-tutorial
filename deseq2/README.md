@@ -67,7 +67,7 @@ head(resSig)
 write.table(resSig, "ewat-control-treat15-0.05.xls", sep='\t',col.names=T,row.names=F,quote = FALSE,na='')     # 输出差异表达分析结果
 ```
 
-- Count matrix input
+## Count matrix input
 ```bash
 library(DESeq2)
 # BiocManager::install("pasilla")
