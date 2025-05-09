@@ -35,8 +35,8 @@ head(mycounts)
 dim(mycounts)
 head(mycounts)
 
+# 注意准备其他信息时，注意顺序，最好都按照基因名排布
 library(biomaRt)
-# 注意准备其他信息是，注意顺序，都按照基因名排布最好
 mouse <- useMart("ensembl", dataset="mmusculus_gene_ensembl")
 # https://www.biostars.org/p/370234/
 gene_coords <- getBM(attributes=c("ensembl_gene_id", "start_position","end_position","percentage_gene_gc_content", "chromosome_name", "gene_biotype"), filters="ensembl_gene_id", values=g_ids, mart=mouse)
@@ -45,6 +45,7 @@ head(gene_coords)
 dim(gene_coords)
 gene_51790 <- gene_coords$ensembl_gene_id
 
+# 基因长度
 mylength <- dplyr::select(gene_coords, c("ensembl_gene_id", "length")) 
 head(mylength)
 mylength <- mylength[order(mylength$ensembl_gene_id),]
@@ -61,6 +62,7 @@ head(mylength)
 names(mylength) <- names_specific
 class(mylength)
 
+# 基因的GC含量
 mygc <- dplyr::select(gene_coords, c("ensembl_gene_id", "percentage_gene_gc_content"))
 head(mygc)
 mygc <- mygc[order(mygc$ensembl_gene_id),]
@@ -74,6 +76,7 @@ head(mygc)
 class(mygc)
 names(mygc) <- names_specific
 
+# 基因的类型
 mybiotypes <- dplyr::select(gene_coords, c("ensembl_gene_id", "gene_biotype"))
 mybiotypes
 mybiotypes <- mybiotypes[order(mybiotypes$ensembl_gene_id),]
@@ -85,36 +88,39 @@ dim(mybiotypes)
 mybiotypes <- mybiotypes$gene_biotype
 names(mybiotypes) <- names_specific
 
+# 基因的位置
 mychroms <- dplyr::select(gene_coords, c("ensembl_gene_id", "chromosome_name", "start_position","end_position"))
 head(mychroms)
 mychroms <- mychroms[order(mychroms$ensembl_gene_id),]
 rownames(mychroms) <- mychroms$ensembl_gene_id
 mychroms$ensembl_gene_id <- NULL
 colnames(mychroms) <- c("Chr", "GeneStart", "GeneEnd")
-
 dim(mychroms)
 
+# 因子信息
 myfactors = data.frame(Tissue = c("control", "15min", "60min", "2h"))
-
 myfactors
 
+# 查看准备好的数据
 head(mycounts)
 head(mylength)
 head(mygc)
 head(mybiotypes)
 head(mychroms)
 
+# 读取
 mydata <- readData(data = mycounts, length = mylength, gc = mygc, biotype = mybiotypes,
                    chromosome = mychroms, factors = myfactors)
 
 
-# 15 min 注意conditions的顺序，前面是分子，后面是分母
+# 差异分析；注意conditions的顺序，前面是分子，后面是分母
 myresults <- noiseq(mydata, factor = "Tissue", k = NULL, norm = "n", pnr = 0.2, conditions = c("15min", "control"),
                     nss = 5, v = 0.02, lc = 1, replicates = "no")
 
 myresults
 head(myresults@results[[1]])
 # 无重复，q的值推荐使用0.9
+# 上下调基因
 myresults.deg = degenes(myresults, q = 0.9, M = NULL)
 head(myresults.deg)
 
@@ -125,13 +131,14 @@ myresults.deg2 = degenes(myresults, q = 0.9, M = "down")
 
 head(myresults.deg2)
 
+# 自带作图函数
 DE.plot(myresults, q = 0.9, graphic = "expr", log.scale = TRUE)
 DE.plot(myresults, q = 0.8, graphic = "MD")
-
 DE.plot(myresults, chromosomes = c(1, 2), log.scale = TRUE, join = FALSE,
         q = 0.9, graphic = "chrom")
 DE.plot(myresults, chromosomes = NULL, q = 0.9, graphic = "distr")
 
+# 结果输出
 write.csv(myresults.deg, "No_replicate_15min_control.csv")
 write.csv(myresults.deg1, "No_replicate_15min_control_Up.csv")
 write.csv(myresults.deg2, "No_replicate_15min_control_Down.csv")
