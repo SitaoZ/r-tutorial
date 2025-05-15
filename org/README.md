@@ -1,6 +1,17 @@
-## org.Sc.sgd.db
+## org.Hs.eg.db
+Genome wide annotation for Human, primarily based on mapping using `Entrez Gene identifiers`.
 
-酵母基因组信息
+
+## org.Mm.eg.db
+Genome wide annotation for Mouse, primarily based on mapping using `Entrez Gene identifiers`.
+
+
+## org.Rn.eg.db
+Genome wide annotation for Rat, primarily based on mapping using `Entrez Gene identifiers`.
+
+## org.Sc.sgd.db
+Genome wide annotation for Yeast, primarily based on mapping using `ORF identifiers from SGD`.
+酵母的全基因组注释，主要基于使用来自 SGD 的 ORF 标识符的映射。 [PDF](https://www.bioconductor.org/packages/release/data/annotation/manuals/org.Sc.sgd.db/man/org.Sc.sgd.db.pdf)
 
 ```bash
 # Load the Annotation Package:
@@ -36,10 +47,11 @@ select(org.Sc.sgd.db,
 
 ```
 
+```bash
 "ORF" = c("gene2systematic","systematic_name"),
 "DESCRIPTION" = c("chromosome_features","feature_description"),
 "COMMON" = c("gene2systematic","gene_name"),
 "INTERPRO" = c("interpro","interpro_id"),
 "SMART" = c("smart","smart_id"),
 "SGD" = c("sgd","sgd_id") )
-
+```
