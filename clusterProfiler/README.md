@@ -135,3 +135,73 @@ gseaplot2(edo, geneSetID = 1, title = edo$Description[1])
 gseaplot2(edo, geneSetID = 2, title = edo$Description[2])
 
 ```
+
+
+## MSigDB + clusterProfiler
+
+
+- MSigDB: Molecular Signatures Database
+分子特征数据库 (MSigDB) 是一个包含数万个注释基因集的资源库，可与 GSEA 软件配合使用，分为人类和小鼠两类。
+```bash
+# human
+H: hallmark gene sets
+C1: positional gene sets
+C2: curated gene sets
+C3: motif gene sets
+C4: computational gene sets
+C5: GO gene sets
+C6: oncogenic signatures
+C7: immunologic signatures
+C8	cell type signature gene sets
+```
+
+```bash
+# mouse
+MH	mouse-ortholog hallmark gene sets
+M1	positional gene sets
+M2	curated gene sets
+M3	regulatory target gene sets
+M5	ontology gene sets
+M8	cell type signature gene sets
+```
+[msigdbr](https://igordot.github.io/msigdbr/articles/msigdbr-intro.html)
+msigdbr R 包提供分子特征数据库 (MSigDB) 基因集，通常与基因集富集分析 (GSEA) 软件一起使用。
+
+```r
+library(msigdbr)
+msigdbr_species() #
+
+m_df <- msigdbr(species = "Homo sapiens") # 需要联网下载
+head(m_df, 2) %>% as.data.frame
+
+all_gene_sets <- msigdbr(species = "Mus musculus")
+head(all_gene_sets)
+
+
+h_gene_sets <- msigdbr(species = "mouse", collection = "H")
+head(h_gene_sets)
+
+cgp_gene_sets <- msigdbr(species = "mouse", collection = "C2", subcollection = "CGP")
+head(cgp_gene_sets)
+
+all_gene_sets |>
+  dplyr::filter(gs_collection == "H") |>
+  head()
+
+# NCBI/Entrez IDs
+msigdbr_t2g <- dplyr::distinct(msigdbr_df, gs_name, ncbi_gene)
+enricher(gene = gene_ids_vector, TERM2GENE = msigdbr_t2g, ...)
+
+# gene symbols
+msigdbr_t2g <- dplyr::distinct(msigdbr_df, gs_name, gene_symbol)
+enricher(gene = gene_symbols_vector, TERM2GENE = msigdbr_t2g, ...)
+
+# fgsea
+msigdbr_list <- split(x = msigdbr_df$gene_symbol, f = msigdbr_df$gs_name)
+fgsea(pathways = msigdbr_list, ...)
+
+# gsva
+msigdbr_list <- split(x = msigdbr_df$gene_symbol, f = msigdbr_df$gs_name)
+gsvapar <- gsvaParam(geneSets = msigdbr_list, ...)
+gsva(gsvapar)
+```
