@@ -106,8 +106,29 @@ scale_y_sqrt()
 
 ```
 
+## labs
 
+`labs()`函数可以用来标注图形的标题（title）、副标题(subtitle)、右下方标注(caption)、左上方标签、坐标轴标题和其他维度的名称。
+使用的如下：
+```bash
+ggplot(gapminder, aes(
+    x = gdpPercap,
+    y = lifeExp)) +
+  geom_point(alpha = 0.4) + 
+  labs(
+    title = "各国各年度人均GDP与期望寿命的关系",
+    subtitle = "1952-2007",
+    tag = "散点图",
+    caption = "数据来源：gapminder",
+    x = "人均GDP(单位：美元)",
+    y = "期望寿命"  )
+```
 
+## theme 
+`theme`主题，使用
+```bash
+
+```
 ## reference
 [ggplot2 cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf)
 [ggplot tidyverse reference](https://ggplot2.tidyverse.org/reference/index.html)
