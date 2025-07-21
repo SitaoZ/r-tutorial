@@ -1,4 +1,4 @@
-## R-tutorial
+<img width="614" height="287" alt="image" src="https://github.com/user-attachments/assets/adef9241-e21f-4bc7-941e-b0527f58db59" />## R-tutorial
 
 1. RStudio 快捷键
 ```r
@@ -301,4 +301,12 @@ dplyr 包是一个相当新的（2014 年）包，它试图为最常见的数据
 # : 区间
 > df_exp<-select(df_exp, transcript:FDR,albut)   
 
+```
+
+- R 常用函数
+
+- grep
+```r
+# 过滤掉含有特定字符的向量
+> dir <- grep("E73", dir, value = TRUE, invert = TRUE)
 ```
