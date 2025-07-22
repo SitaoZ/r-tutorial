@@ -319,3 +319,12 @@ require(remotes)
 install_version("Matrix", version="1.6.4")
 
 ```
+
+- pak   
+`pak`是R中快速安装软件的包，用来替换install.packages() 和 devtools::install_github()。
+pak十分快速，安全和便捷。
+```r
+install.packages('pak')
+pak::pak('r-lib/ragg')
+
+```
