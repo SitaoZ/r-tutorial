@@ -311,7 +311,8 @@ dplyr 包是一个相当新的（2014 年）包，它试图为最常见的数据
 > dir <- grep("E73", dir, value = TRUE, invert = TRUE)
 ```
 
-- remotes
+- remotes   
+[install specific version](https://stackoverflow.com/questions/17082341/how-to-downgrade-an-r-package-by-installing-an-older-version)
 ```r
 # 软件安装指定的版本
 require(remotes)
