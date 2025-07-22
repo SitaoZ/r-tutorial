@@ -1,4 +1,4 @@
-<img width="614" height="287" alt="image" src="https://github.com/user-attachments/assets/adef9241-e21f-4bc7-941e-b0527f58db59" />## R-tutorial
+## R-tutorial
 
 1. RStudio 快捷键
 ```r
@@ -309,4 +309,12 @@ dplyr 包是一个相当新的（2014 年）包，它试图为最常见的数据
 ```r
 # 过滤掉含有特定字符的向量
 > dir <- grep("E73", dir, value = TRUE, invert = TRUE)
+```
+
+- remotes
+```r
+# 软件安装指定的版本
+require(remotes)
+install_version("Matrix", version="1.6.4")
+
 ```
