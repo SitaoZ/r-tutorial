@@ -27,3 +27,28 @@ silent = FALSE, na_col = "#DDDDDD", ...)
 
 ```
 
+
+- 标记原始值
+```bash
+library(pheatmap)
+data2 <- read.csv('seq_results/heatmap_TPM.csv')
+head(data2)
+
+data2 <- dplyr::filter(data2, gene_id != "Gm20547")
+
+rownames(data2) <- data2$gene_id
+head(data2)
+data2$gene_id <- NULL
+
+head(data2)
+dim(data2)
+data_matrix <- as.matrix(data2)
+data_matrix
+pheatmap(data2, scale = 'row', 
+         cluster_rows = T, cluster_cols = F, 
+         display_numbers = matrix(  # 创建原始值矩阵作为标签
+           as.character(round(data_matrix, 3)), 
+           nrow = nrow(data_matrix)
+         ))
+
+```
