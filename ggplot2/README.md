@@ -126,8 +126,10 @@ ggplot(gapminder, aes(
 
 ## theme 
 `theme`主题，使用
-```bash
 
+- 主题title居中
+```bash
+theme(plot.title = element_text(hjust = 0.5))
 ```
 ## reference
 [ggplot2 cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf)
