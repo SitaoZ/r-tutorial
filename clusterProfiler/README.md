@@ -24,6 +24,15 @@ GO中的每个术语都具有唯一的标识符（GO ID）和明确的名称，�
 - 5.调整多重比较：由于富集分析通常涉及多个假设测试，因此需要调整多重比较以控制假阳性率，常用的方法包括Bonferroni校正、FDR（False Discovery Rate）控制等  
 - 6.解释结果：分析哪些生物学过程或功能类别显著富集，这有助于揭示基因集背后的生物学意义  
 
+### emapplot 
+```bash
+library(DOSE)
+data(geneList)
+de <- names(geneList)[1:100]
+x <- enrichDO(de)
+x2 <- pairwise_termsim(x)
+emapplot(x2)
+```
 
 ## Mouse example
 ```r
