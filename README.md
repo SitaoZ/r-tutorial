@@ -328,3 +328,42 @@ install.packages('pak')
 pak::pak('r-lib/ragg')
 
 ```
+
+11.文件读取
+- base
+```r
+# R内置，无需安装、稳定可靠、参数丰富
+# 速度较慢、内存效率低、大文件读取困难
+# 小文件使用，兼容性高
+read.table()
+```
+- utils
+```r
+# R自带、参数熟悉
+# 标准CSV文件
+read.csv()
+```
+
+- data.table
+```r
+# 极快（多线程）、自动检测分隔符、内存效率高、直接返回data.table
+# 适合大文件读取
+library(data.table)
+f <- fread("30690_irnt.gwas.imputed_v3.both_sexes.varorder.tsv", sep = '\t')
+```
+
+- readr
+```r
+# tidyverse生态:友好的进度条、列类型稳定、比fread略慢、依赖tidyverse
+# 适合日常数据分析、tidyverse用户
+library(readr)
+c <- read_delim(file = "20003_1140861958.gwas.imputed_v3.both_sexes.tsv.bgz", delim = "\t")
+c <- read_tsv(file = "20003_1140861958.gwas.imputed_v3.both_sexes.tsv.bgz")
+c <- read_csv(file = "xxx.csv")
+```
+- readxl
+```r
+# 读取excel
+library(readxl)
+data <- read_excel("data.xlsx", sheet = "Sheet1")
+```
