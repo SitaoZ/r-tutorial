@@ -368,8 +368,14 @@ library(readxl)
 data <- read_excel("data.xlsx", sheet = "Sheet1")
 ```
 
-12.包安装指定下载路径
+12.包安装指定下载路径  
+
+在R中，可以通过getOption("download.file.method")查看默认的下载方法。不同操作系统（Windows、macOS、Linux）默认方式不同（如wininet、libcurl等）。若需设置，可使用options(download.file.method = "your_method")，常用method = "libcurl"提高稳定性。
+
 ```r
+getOption("download.file.method")
+
 # Error in utils::download.file(url, path, method = method, quiet = quiet, : internet routines cannot be loaded
 options(download.file.method = "wget")
 ```
+[utils download](https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/download.file)
