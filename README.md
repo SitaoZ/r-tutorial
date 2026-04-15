@@ -367,3 +367,9 @@ c <- read_csv(file = "xxx.csv")
 library(readxl)
 data <- read_excel("data.xlsx", sheet = "Sheet1")
 ```
+
+12.包安装指定下载路径
+```r
+# Error in utils::download.file(url, path, method = method, quiet = quiet, : internet routines cannot be loaded
+options(download.file.method = "wget")
+```
